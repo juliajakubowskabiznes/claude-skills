@@ -25,6 +25,28 @@ Sterowanie prawdziwą przeglądarką z persystentnym stanem sesji (cookies, logo
 
 ---
 
+### 🎭 advisor-board
+
+Wirtualna rada doradcza 12 person (Hormozi, Goggins, Naval, Taleb, Taylor Swift, Bryan Johnson, Mark Manson, James Clear, Daniel Priestley, Nick Saraev, Leon Hendrix, Rian Doris) debatująca Twoją decyzję przez 3 rundy. Każdy agent czyta swój profil, daje nieocenzurowaną opinię, ściera się z innymi, potem formułuje rekomendację. Output: jeden plik debaty z syntezą, która zachowuje realne niezgody.
+
+📂 [`advisor-board/SKILL.md`](./advisor-board/SKILL.md)
+
+**Pierwsze uruchomienie** przeprowadza one-time onboarding: pyta o imię, pozwala zostawić domyślną radę lub podać własnych 12 advisorów, opcjonalnie podpinasz ścieżki do swoich plików kontekstowych. Potem skill sam podmienia placeholdery `{{USER_NAME}}` → Twoje imię i zapisuje config.
+
+**Instalacja:**
+1. Skopiuj cały folder `advisor-board/` (SKILL.md + references/)
+2. Wklej do `~/.claude/skills/advisor-board/` w swoim projekcie
+3. Zrestartuj Claude Code
+4. Wywołaj `/advisor-board [pytanie]` lub powiedz *„convene the board"*
+
+**Użycie:**
+```
+/advisor-board Czy zamknąć stary produkt i postawić wszystko na nowy?
+```
+Claude frame'uje pytanie, dispatcha 12 subagentów równolegle × 3 rundy, zwraca plik debaty z syntezą.
+
+---
+
 ## Licencja
 
 MIT — używaj, modyfikuj, dziel się.
