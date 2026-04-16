@@ -27,11 +27,13 @@ Sterowanie prawdziwą przeglądarką z persystentnym stanem sesji (cookies, logo
 
 ### 🎭 advisor-board
 
-Wirtualna rada doradcza **4-12 person** (domyślnie 4: Hormozi, Naval, Goggins, Manson) debatująca Twoją decyzję przez 3 rundy. Każdy agent czyta swój profil, daje nieocenzurowaną opinię, ściera się z innymi, potem formułuje rekomendację. Output: jeden plik debaty z syntezą, która zachowuje realne niezgody.
+Wirtualna rada doradcza **4-12 person które wybierasz sam** debatująca Twoją decyzję przez 3 rundy. Każdy agent czyta swój profil, daje nieocenzurowaną opinię, ściera się z innymi, potem formułuje rekomendację. Output: jeden plik debaty z syntezą, która zachowuje realne niezgody.
 
 📂 [`advisor-board/SKILL.md`](./advisor-board/SKILL.md)
 
-**Pierwsze uruchomienie** przeprowadza one-time onboarding: pyta o imię, pozwala wybrać wielkość rady (4/6/8/12 lub własna lista), opcjonalnie podpinasz ścieżki do plików kontekstowych. Potem skill sam podmienia placeholdery `{{USER_NAME}}` → Twoje imię i zapisuje config.
+**Pierwsze uruchomienie** przeprowadza one-time onboarding: pyta o Twoje imię, ile osób w radzie (rekomendacja: 4), KOGO konkretnie chcesz na pokładzie (możesz wpisać dowolnych ludzi — przedsiębiorcy, myśliciele, sportowcy, postacie fikcyjne, mentorzy — Claude sam zbuduje ich profile z wiedzy publicznej), opcjonalnie ścieżki do plików kontekstowych. Potem skill podmienia placeholdery `{{USER_NAME}}` → Twoje imię i zapisuje config.
+
+> **Wskazówka przy wyborze rady:** dobierz osoby z **różnymi światopoglądami**, nie 4 wariantów tego samego. Rada 4 founderów mówiących "ship faster" jest bezużyteczna — rada ekonomista + długoterm + BS-caller + values-questioner daje realne tarcie.
 
 **Koszt per run (Sonnet):**
 | Advisors | Tokeny | Koszt |
