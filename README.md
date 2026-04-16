@@ -27,11 +27,21 @@ Sterowanie prawdziwą przeglądarką z persystentnym stanem sesji (cookies, logo
 
 ### 🎭 advisor-board
 
-Wirtualna rada doradcza 12 person (Hormozi, Goggins, Naval, Taleb, Taylor Swift, Bryan Johnson, Mark Manson, James Clear, Daniel Priestley, Nick Saraev, Leon Hendrix, Rian Doris) debatująca Twoją decyzję przez 3 rundy. Każdy agent czyta swój profil, daje nieocenzurowaną opinię, ściera się z innymi, potem formułuje rekomendację. Output: jeden plik debaty z syntezą, która zachowuje realne niezgody.
+Wirtualna rada doradcza **4-12 person** (domyślnie 4: Hormozi, Naval, Goggins, Manson) debatująca Twoją decyzję przez 3 rundy. Każdy agent czyta swój profil, daje nieocenzurowaną opinię, ściera się z innymi, potem formułuje rekomendację. Output: jeden plik debaty z syntezą, która zachowuje realne niezgody.
 
 📂 [`advisor-board/SKILL.md`](./advisor-board/SKILL.md)
 
-**Pierwsze uruchomienie** przeprowadza one-time onboarding: pyta o imię, pozwala zostawić domyślną radę lub podać własnych 12 advisorów, opcjonalnie podpinasz ścieżki do swoich plików kontekstowych. Potem skill sam podmienia placeholdery `{{USER_NAME}}` → Twoje imię i zapisuje config.
+**Pierwsze uruchomienie** przeprowadza one-time onboarding: pyta o imię, pozwala wybrać wielkość rady (4/6/8/12 lub własna lista), opcjonalnie podpinasz ścieżki do plików kontekstowych. Potem skill sam podmienia placeholdery `{{USER_NAME}}` → Twoje imię i zapisuje config.
+
+**Koszt per run (Sonnet):**
+| Advisors | Tokeny | Koszt |
+|---|---|---|
+| 4 (default) | ~60K | ~$0.30 |
+| 6 | ~90K | ~$0.45 |
+| 8 | ~120K | ~$0.60 |
+| 12 (max) | ~175K | ~$1.00 |
+
+> Przy 12 advisorach debata zbliża się do limitu 200K okna kontekstu Claude Pro — możesz uderzyć w limit w środku debaty. Bezpiecznie trzymać 4-8.
 
 **Instalacja:**
 1. Skopiuj cały folder `advisor-board/` (SKILL.md + references/)
@@ -43,7 +53,7 @@ Wirtualna rada doradcza 12 person (Hormozi, Goggins, Naval, Taleb, Taylor Swift,
 ```
 /advisor-board Czy zamknąć stary produkt i postawić wszystko na nowy?
 ```
-Claude frame'uje pytanie, dispatcha 12 subagentów równolegle × 3 rundy, zwraca plik debaty z syntezą.
+Claude frame'uje pytanie, dispatcha N subagentów równolegle × 3 rundy, zwraca plik debaty z syntezą.
 
 ---
 
