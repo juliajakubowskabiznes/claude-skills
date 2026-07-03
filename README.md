@@ -59,6 +59,37 @@ Claude frame'uje pytanie, dispatcha N subagentów równolegle × 3 rundy, zwraca
 
 ---
 
+### 🔎 find-skills
+
+Pomaga **znaleźć i zainstalować gotowe skille** z otwartego ekosystemu. Mówisz Claude czego potrzebujesz (*„jak zrobić X", „czy jest skill do Y"*), a on wyszukuje pasujące skille przez `npx skills find`, pokazuje opcje i instaluje wybrany. Twój sposób na rozbudowę Claude Code bez pisania skilla od zera.
+
+📂 [`find-skills/SKILL.md`](./find-skills/SKILL.md)
+
+**Wymagania:**
+- Node.js (dla `npx`) — skill korzysta z [Skills CLI](https://skills.sh/) (`npx skills`)
+
+**Instalacja skilla:**
+1. Skopiuj zawartość [`find-skills/SKILL.md`](./find-skills/SKILL.md)
+2. Wklej do `~/.claude/skills/find-skills/SKILL.md` w swoim projekcie
+3. Zrestartuj Claude Code
+4. Powiedz naturalnie: *„znajdź skill do X", „czy jest coś do robienia Y", „jak mogę zautomatyzować Z"*
+
+---
+
+### 🎣 hook-writer
+
+Generuje **przyciągające uwagę hooki** (nagłówki, otwarcia postów, tematy maili, copy do reklam) z perspektywy 5 różnych archetypów odbiorcy. Każdy archetyp patrzy na Twój temat pod innym kątem i odsłania inną motywację odbiorcy, więc dostajesz kilka wariantów zamiast jednego i wybierasz ten, który najlepiej trafia.
+
+📂 [`hook-writer/SKILL.md`](./hook-writer/SKILL.md)
+
+**Instalacja skilla:**
+1. Skopiuj zawartość [`hook-writer/SKILL.md`](./hook-writer/SKILL.md)
+2. Wklej do `~/.claude/skills/hook-writer/SKILL.md` w swoim projekcie
+3. Zrestartuj Claude Code
+4. Powiedz: *„napisz hooki do [temat]", „potrzebuję nagłówka na post o X", „daj tematy maila do Y"*
+
+---
+
 ## Licencja
 
 MIT — używaj, modyfikuj, dziel się.
