@@ -92,9 +92,13 @@ Generuje **przyciągające uwagę hooki** (nagłówki, otwarcia postów, tematy 
 
 ### ⚖️ tribunal
 
-Stawia Twoją pracę przed sądem, zanim ją wyślesz. **Drugi model AI (OpenAI Codex, lokalnie) jest prokuratorem** i atakuje to, co powstało. Claude broni się z każdego zarzutu osobno, z dowodem z pliku. Potem **ślepy sędzia** — świeże wywołanie Codexa, które nie wie, kto pisał którą stronę — orzeka per zarzut: NAPRAW / ODDAL / DO DECYZJI CZŁOWIEKA. Claude naprawia wyłącznie to, co zasądzono.
+Stawia Twoją pracę przed sądem, zanim ją wyślesz.
+
+Zaczyna się od **AUTORA** — jedno AI wygenerowało pracę: kod, scenariusz, architekturę, ofertę. Potem **PROKURATOR** (inny model — domyślnie OpenAI Codex) atakuje to, co powstało i wypisuje ponumerowane zarzuty. **OBROŃCA**, czyli autor, odpowiada na każdy zarzut osobno: przyznaję albo odrzucam, zawsze z dowodem z konkretnego pliku. Potem **ŚLEPY SĘDZIA** — świeże wywołanie, które nie wie, kto pisał którą stronę — orzeka per zarzut: NAPRAW / ODDAL / DO DECYZJI CZŁOWIEKA. Na końcu **WYKONANIE WYROKU**: autor naprawia wyłącznie to, co zasądzono.
 
 📂 [`tribunal/SKILL.md`](./tribunal/SKILL.md)
+
+**Obsadę wybierasz sam.** Jedna reguła trzyma całość: autor nigdy nie oskarża i nie sądzi własnej pracy. Poza tym możesz zamienić role — jeśli to Codex pisał kod, to on się broni, a atakuje i sądzi Claude. Jeśli pracę pisał człowiek (Twoja oferta, Twój plan), oba modele są wolne, a Claude broni jej jako pełnomocnik i wprost zaznacza zarzuty, które zależą od Twoich intencji — te trafiają do Ciebie jako DO DECYZJI CZŁOWIEKA.
 
 **Po co to, skoro Claude może sam przejrzeć swoją pracę:** model, który coś właśnie zbudował, jest najgorszym recenzentem tej rzeczy — ma te same założenia i te same ślepe plamy, z którymi ją pisał. Ale sama wroga recenzja też nie jest werdyktem: atakujący przesadza, zgłasza świadome decyzje jako błędy i dokłada zarzuty, żeby wyglądać solidnie. Działanie na niepodważonym zarzucie kończy się „naprawianiem" rzeczy, które działały. Stąd trzy role zamiast jednej opinii.
 
@@ -107,6 +111,7 @@ Działa **nie tylko na kodzie** — ofertę, landing, dokument dla klienta czy a
   codex login
   ```
 - Nie wymaga wtyczki `openai-codex` do Claude Code — skill woła `codex exec` bezpośrednio.
+- Codex CLI działa na Twoim komputerze i sam otwiera pliki z dysku, ale **samo rozumowanie modelu dzieje się na serwerach OpenAI** — prompt i fragmenty plików tam trafiają. To nie jest tryb offline i warto to wiedzieć, zanim postawisz przed sądem materiały klienta.
 - Bez Codexa skill zaproponuje słabszy wariant zastępczy (subagent Claude) i powie wprost, co przez to tracisz.
 
 **Instalacja:**
