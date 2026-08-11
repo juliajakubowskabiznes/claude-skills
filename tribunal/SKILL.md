@@ -15,35 +15,19 @@ But a hostile review alone is also not a verdict. Attackers overreach. They flag
 So: prosecution, defense, and a blind judge. Five phases, starting with the one everybody forgets to name.
 
 ```
-0. AUTHOR       One model produced the work — code, a script, an architecture,
-                an offer. Name it. Everything below follows from this.
-1. PROSECUTOR   A model that is NOT the author attacks the work. Numbered charges.
-2. DEFENSE      The author answers every charge: admit, or deny with evidence.
-3. JUDGE        A fresh run of a non-author model sees charge/defense pairs with
-                authorship stripped. Rules per charge: FIX / DISMISS / HUMAN DECISION.
-4. EXECUTION    The author repairs only what was ordered. Everything else is
+0. AUTHOR       Claude generated the work — code, a script, an architecture,
+                an offer. Everything below follows from this.
+1. PROSECUTOR   Codex — a different model — attacks it. Numbered charges.
+2. DEFENSE      Claude answers every charge: admit, or deny with evidence.
+3. JUDGE        A fresh Codex run sees charge/defense pairs with authorship
+                stripped. Rules per charge: FIX / DISMISS / HUMAN DECISION.
+4. EXECUTION    Claude repairs only what was ordered. Everything else is
                 reported as dismissed, with the reason.
 ```
 
-## Casting
+The roles are fixed, and the reason is the one thing worth remembering here: **the author never prosecutes and never judges its own work.** Claude is running this session, so Claude is the author and the defense; the outside voice has to come from somewhere else. Swap those around and this becomes a model reviewing itself with extra steps.
 
-One rule holds the whole thing up: **the author never prosecutes and never judges its own work.** Everything else is negotiable.
-
-The default casting, because Claude is usually the one that just built the thing:
-
-| Role | Who | Why |
-|---|---|---|
-| Author | Claude | it wrote the work in this session |
-| Prosecutor | Codex | different model, different blind spots |
-| Defense | Claude | you defend what you made — that is the point |
-| Judge | Codex, fresh run | knows nothing about the build conversation |
-
-Announce the casting in one line before starting, and let the user change it. Two common swaps:
-
-- **Codex wrote the work** (the user built it through the Codex CLI or the Codex plugin): then Codex is the author and defends, Claude prosecutes, and a Claude subagent in a fresh context judges.
-- **A human wrote the work** — an offer, a plan, a document the user wrote themselves. Both models are free, so use Codex as prosecutor and Claude as judge, or the reverse. Claude then defends as counsel rather than as author: it argues from what is in the files, and where a charge turns on intent it cannot verify, it says so plainly. Those charges tend to land on HUMAN DECISION, which is correct — only the author knows what they meant.
-
-If the user asks for a casting where the author also prosecutes or judges, say why that defeats the mechanism and offer the nearest working alternative. It is the one constraint worth defending: without it this is just a model reviewing itself with extra steps.
+When the work was written by the *user* rather than by Claude — their own offer, their own plan — nothing about the phases changes. Claude simply defends as counsel instead of as author: it argues from what is in the files, and where a charge turns on intent it cannot verify, it says so. Those land on HUMAN DECISION, which is right, because only the person who wrote it knows what they meant.
 
 ## Before you start
 
@@ -68,11 +52,11 @@ An OpenAI account is required (a ChatGPT Plus/Pro plan or an API key). If they'd
 2. Work Claude produced in this conversation — use those paths.
 3. A git repo with uncommitted work — `git status --short` and `git diff`, and say which files you picked.
 
-**Establish the author**, since the casting depends on it. If Claude built it in this conversation, that is settled. Otherwise ask — one short question, because guessing wrong puts the author in the prosecutor's chair and quietly turns the trial into self-review.
+State the scope in one line before proceeding, so a wrong guess costs a sentence instead of five minutes of trial over the wrong material:
 
-State both in one line before proceeding, so a wrong assumption costs a sentence instead of five minutes:
+> Na ławie: `src/auth.ts`, `src/session.ts` — 340 linii.
 
-> Na ławie: `src/auth.ts`, `src/session.ts` (340 linii). Autor: Claude. Prokurator i sędzia: Codex.
+The user is the only one who can catch that early, and they cannot catch what they were not shown.
 
 **Set up a working directory** so the artifacts survive and can be re-read:
 
@@ -99,11 +83,7 @@ This takes minutes, not seconds, on real work. Run it with a generous timeout (6
 
 Read `.tribunal/2-charges.md`. If it came back empty or the command failed, show the user the actual error instead of inventing charges.
 
-**If the casting puts Claude in the prosecutor's chair** (because Codex authored the work), skip the shell entirely: dispatch a subagent with the same prompt, in a fresh context that has not seen the work being built. Same prompt, same output file, same rules — only the runner changes.
-
 ## Phase 2 — Defense
-
-The author answers here, so if Codex wrote the work, the defense is a `codex exec` run against `.tribunal/2-charges.md`. In the default casting it is Claude, writing directly.
 
 Answer **every single charge**. A charge you skip becomes a charge the judge never sees, which quietly turns the skill back into "one model's opinion".
 
@@ -149,8 +129,6 @@ Three possible rulings per charge:
 HUMAN DECISION is the default when the judge cannot decide from evidence in the files. This is deliberate. A judge that guesses in order to look decisive will order fixes to things that were fine, and the user loses trust in the whole mechanism. Being told "you need to decide this one, here's the tension" is more useful than a confident coin flip.
 
 ## Phase 4 — Execution
-
-The author repairs its own work — whoever that is under the current casting.
 
 Repair only what the judge marked FIX. Not the DISMISSED ones you privately still agree with, not the HUMAN DECISION ones you have an opinion about. The user consented to a mechanism; silently overruling it makes the verdict theatre.
 

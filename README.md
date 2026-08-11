@@ -98,7 +98,7 @@ Zaczyna się od **AUTORA** — jedno AI wygenerowało pracę: kod, scenariusz, a
 
 📂 [`tribunal/SKILL.md`](./tribunal/SKILL.md)
 
-**Obsadę wybierasz sam.** Jedna reguła trzyma całość: autor nigdy nie oskarża i nie sądzi własnej pracy. Poza tym możesz zamienić role — jeśli to Codex pisał kod, to on się broni, a atakuje i sądzi Claude. Jeśli pracę pisał człowiek (Twoja oferta, Twój plan), oba modele są wolne, a Claude broni jej jako pełnomocnik i wprost zaznacza zarzuty, które zależą od Twoich intencji — te trafiają do Ciebie jako DO DECYZJI CZŁOWIEKA.
+**Role są sztywne, i to jest cała zasada:** autor nigdy nie oskarża i nie sądzi własnej pracy. Claude buduje, więc Claude się broni — a głos z zewnątrz musi przyjść skądinąd. Jeśli pracę pisałeś Ty sam (Twoja oferta, Twój plan), fazy się nie zmieniają: Claude broni jej wtedy jako pełnomocnik i wprost zaznacza zarzuty, które zależą od Twoich intencji — te trafiają do Ciebie jako DO DECYZJI CZŁOWIEKA.
 
 **Po co to, skoro Claude może sam przejrzeć swoją pracę:** model, który coś właśnie zbudował, jest najgorszym recenzentem tej rzeczy — ma te same założenia i te same ślepe plamy, z którymi ją pisał. Ale sama wroga recenzja też nie jest werdyktem: atakujący przesadza, zgłasza świadome decyzje jako błędy i dokłada zarzuty, żeby wyglądać solidnie. Działanie na niepodważonym zarzucie kończy się „naprawianiem" rzeczy, które działały. Stąd trzy role zamiast jednej opinii.
 
