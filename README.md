@@ -90,6 +90,37 @@ Generuje **przyciągające uwagę hooki** (nagłówki, otwarcia postów, tematy 
 
 ---
 
+### ⚖️ tribunal
+
+Stawia Twoją pracę przed sądem, zanim ją wyślesz. **Drugi model AI (OpenAI Codex, lokalnie) jest prokuratorem** i atakuje to, co powstało. Claude broni się z każdego zarzutu osobno, z dowodem z pliku. Potem **ślepy sędzia** — świeże wywołanie Codexa, które nie wie, kto pisał którą stronę — orzeka per zarzut: NAPRAW / ODDAL / DO DECYZJI CZŁOWIEKA. Claude naprawia wyłącznie to, co zasądzono.
+
+📂 [`tribunal/SKILL.md`](./tribunal/SKILL.md)
+
+**Po co to, skoro Claude może sam przejrzeć swoją pracę:** model, który coś właśnie zbudował, jest najgorszym recenzentem tej rzeczy — ma te same założenia i te same ślepe plamy, z którymi ją pisał. Ale sama wroga recenzja też nie jest werdyktem: atakujący przesadza, zgłasza świadome decyzje jako błędy i dokłada zarzuty, żeby wyglądać solidnie. Działanie na niepodważonym zarzucie kończy się „naprawianiem" rzeczy, które działały. Stąd trzy role zamiast jednej opinii.
+
+Działa **nie tylko na kodzie** — ofertę, landing, dokument dla klienta czy arkusz też można postawić przed sądem. Wtedy prokurator i sędzia piszą prostym językiem, bez żargonu.
+
+**Wymagania:**
+- [Codex CLI](https://developers.openai.com/codex/cli) + konto OpenAI (plan ChatGPT lub klucz API):
+  ```bash
+  npm install -g @openai/codex
+  codex login
+  ```
+- Nie wymaga wtyczki `openai-codex` do Claude Code — skill woła `codex exec` bezpośrednio.
+- Bez Codexa skill zaproponuje słabszy wariant zastępczy (subagent Claude) i powie wprost, co przez to tracisz.
+
+**Instalacja:**
+1. Skopiuj cały folder `tribunal/` (SKILL.md + references/)
+2. Wklej do `~/.claude/skills/tribunal/`
+3. Zrestartuj Claude Code
+4. Wywołaj `/tribunal` albo powiedz: *„postaw to przed sądem", „rozjedź to zanim wyślę", „co tu przeoczyłam"*
+
+**Koszt i czas:** dwa wywołania Codexa na jeden proces, po ok. 1-2 min każde na realnym materiale. Artefakty lądują w `.tribunal/` w katalogu projektu — dopisz go do `.gitignore`.
+
+**Czego się spodziewać:** na końcu dostajesz jedną tabelę (zarzut → werdykt → status), a pod nią rozwinięte tylko pozycje DO DECYZJI CZŁOWIEKA — bo to jedyne, które naprawdę wymagają Ciebie. Sędzia domyślnie odsyła do Ciebie wszystko, czego nie da się rozstrzygnąć dowodem z plików; woli to niż wygląd stanowczości.
+
+---
+
 ## Licencja
 
 MIT — używaj, modyfikuj, dziel się.
